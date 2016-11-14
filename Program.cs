@@ -10,7 +10,7 @@ namespace Viktor_Discord_Bot
     {
         static void Main(string[] args)
         {
-            MyBot bot = new MyBot();
+            ViktorBot bot = new ViktorBot();
         }
     }
 }
