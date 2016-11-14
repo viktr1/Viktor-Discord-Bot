@@ -1,4 +1,6 @@
-﻿using Discord;
+//DiscordNET library is required
+
+using Discord;
 using Discord.Audio;
 using Discord.Commands;
  
@@ -10,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace Viktor_Discord_Bot
 {
-    class MyBot
+    class ViktorBot
     {
         DiscordClient discord;
         CommandService commands;
@@ -18,7 +20,7 @@ namespace Viktor_Discord_Bot
         Random rand;
         Random random = new Random();
         
-        string[] freshestMemes;
+        string[] dankMemes;
         string[] askedQuestions;
         string[] coinFlip;
         string[] boobs;
@@ -36,18 +38,18 @@ namespace Viktor_Discord_Bot
         {
             rand = new Random();
 
-            freshestMemes = new string[]
+            dankMemes = new string[]
             {
-                "memefolder/meme1.jpg",
-                "memefolder/meme2.jpg",
-                "memefolder/meme3.jpg",
-                "memefolder/meme4.jpg",
-                "memefolder/meme5.jpg",
-                "memefolder/meme6.jpg",
-                "memefolder/meme7.jpg",
-                "memefolder/meme8.jpg",
-                "memefolder/meme9.jpg",
-                "memefolder/meme10.jpg"
+                "memes/meme1.jpg",
+                "memes/meme2.jpg",
+                "memes/meme3.jpg",
+                "memes/meme4.jpg",
+                "memes/meme5.jpg",
+                "memes/meme6.jpg",
+                "memes/meme7.jpg",
+                "memes/meme8.jpg",
+                "memes/meme9.jpg",
+                "memes/meme10.jpg"
             };
 
             askedQuestions = new string[]
@@ -104,12 +106,12 @@ namespace Viktor_Discord_Bot
             RegisterInfoCommand();
             RegisterAddCommand();
             RegisterCreateRoleCommand();
-            RegisterMusicCommand();
+            RegisterBoobsCommand();
             RegisterRemoveRoleCommand();
 
             discord.ExecuteAndWait(async () =>
             {
-                await discord.Connect("MjM3Mjg0MTgwNTc1MjU2NTc2.CuVbpQ.x0KHkzt9I-S3iJSehAmuzVh2Rqk", TokenType.Bot);
+                await discord.Connect("YOURTOKEN", TokenType.Bot);
             });
         }
 
@@ -145,14 +147,13 @@ namespace Viktor_Discord_Bot
                });
         }
 
-        private void RegisterMusicCommand()
+        //Posts a random picture from media.oboobs.ru
+        private void RegisterBoobsCommand()
         {
             commands.CreateCommand("boobs")
                 .Do(async (e) =>
                {
-                   int randomBoobIndex = rand.Next(boobs.Length);
-                   string boobToPost = freshestMemes[randomBoobIndex];
-                   await e.Channel.SendMessage("http://media.oboobs.ru/boobs_preview/" + string boobs);
+                   await e.Channel.SendMessage("coming soon hehe");
                });
         }
 
@@ -164,7 +165,7 @@ namespace Viktor_Discord_Bot
                 {
                     if (e.User.Id == 163307815056703488)
                     {
-                        await e.Server.CreateRole(name: "Viktor", isMentionable: true, permissions: Discord.ServerPermissions.All, color: Color.Purple, isHoisted: true);
+                        await e.Server.CreateRole(name: "Viktor", isMentionable: true, permissions: null, color: Color.Purple, isHoisted: true);
                         var Viktor = e.Server.Roles.FirstOrDefault(x => x.Name == "Viktor");
                         await e.User.AddRoles(Viktor);
                     }
@@ -189,9 +190,9 @@ namespace Viktor_Discord_Bot
             commands.CreateCommand("meme")
                 .Do(async (e) =>
                 {
-                    int randomMemeIndex = rand.Next(freshestMemes.Length);
-                    string memeToPost = freshestMemes[randomMemeIndex];
-                    await e.Channel.SendFile(memeToPost);
+                    int randomMemes = rand.Next(dankMemes.Length);
+                    string coolMeme = dankMemes[randomMemes];
+                    await e.Channel.SendFile(coolMeme);
                 });
         }
 
