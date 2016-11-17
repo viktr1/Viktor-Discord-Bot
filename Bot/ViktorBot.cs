@@ -34,7 +34,7 @@ namespace Viktor_Discord_Bot
         public Game CurrentGame { get; private set; }
         public ServerPermissions? Administrator { get; private set; }
 
-        public MyBot()
+        public ViktorBot()
         {
             rand = new Random();
 
